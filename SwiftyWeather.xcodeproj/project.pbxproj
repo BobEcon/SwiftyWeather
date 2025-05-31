@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C54A33322DEB7E2300DEEE28 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54A33312DEB7E2300DEEE28 /* WeatherViewModel.swift */; };
 		C5520D8D2DEA6D3F00D56315 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5520D882DEA6D3F00D56315 /* Assets.xcassets */; };
 		C5520D8F2DEA6D3F00D56315 /* SwiftyWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5520D8A2DEA6D3F00D56315 /* SwiftyWeatherApp.swift */; };
 		C5520D902DEA6D3F00D56315 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5520D8B2DEA6D3F00D56315 /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C54A33312DEB7E2300DEEE28 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		C5520D782DEA642300D56315 /* SwiftyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5520D882DEA6D3F00D56315 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5520D892DEA6D3F00D56315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,6 +33,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C54A33432DEBB47B00DEEE28 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5520D8B2DEA6D3F00D56315 /* WeatherView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C54A33442DEBB48500DEEE28 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C54A33312DEB7E2300DEEE28 /* WeatherViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C5520D6F2DEA642300D56315 = {
 			isa = PBXGroup;
 			children = (
@@ -51,7 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				C5520D8A2DEA6D3F00D56315 /* SwiftyWeatherApp.swift */,
-				C5520D8B2DEA6D3F00D56315 /* WeatherView.swift */,
+				C54A33432DEBB47B00DEEE28 /* Views */,
+				C54A33442DEBB48500DEEE28 /* Models */,
 				C5520D882DEA6D3F00D56315 /* Assets.xcassets */,
 				C5520D892DEA6D3F00D56315 /* Info.plist */,
 			);
@@ -131,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5520D8F2DEA6D3F00D56315 /* SwiftyWeatherApp.swift in Sources */,
+				C54A33322DEB7E2300DEEE28 /* WeatherViewModel.swift in Sources */,
 				C5520D902DEA6D3F00D56315 /* WeatherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
