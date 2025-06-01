@@ -18,18 +18,36 @@ struct WeatherView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    Image(systemName: getWeatherIcon(for: weather.weather_code))
+                    Image(systemName: getWeatherIcon(for: weather.weatherCode))
                         .resizable()
                         .scaledToFit()
                         .padding(.horizontal)
                         .symbolRenderingMode(.multicolor)
-                    Text(getWeatherDescription(for:weather.weather_code))
+                    Text(getWeatherDescription(for:weather.weatherCode))
                             .font(.largeTitle)
-                    Text("\(weather.temperature_2m.formatted(.number.precision(.fractionLength(0))))°F")
+                    Text("\(weather.temperature.formatted(.number.precision(.fractionLength(0))))°F")
                             .font(.system(size: 150, weight: .thin))
-                        Text("Wind \(weather.wind_speed_10m.formatted(.number.precision(.fractionLength(0))))mph - Feels like \(weather.apparent_temperature.formatted(.number.precision(.fractionLength(0))))°F")
+                        Text("Wind \(weather.windspeed.formatted(.number.precision(.fractionLength(0))))mph - Feels like \(weather.feelsLike.formatted(.number.precision(.fractionLength(0))))°F")
                             .font(.title2)
                             .padding(.bottom)
+                        
+                    List {
+                        ForEach(0..<weather.date.count, id: \.self) { index in
+                            HStack {
+                                Image(systemName: getWeatherIcon(for: weather.dailyWeatherCode[index]))
+                                Text(getWeekDay(text:weather.date[index]))
+                                Spacer()
+                                Text("\(weather.dailyLowTemp[index].formatted(.number.precision(.fractionLength(0))))°F")
+                                Text("/")
+                                Text("\(weather.dailytHighTemp[index].formatted(.number.precision(.fractionLength(0))))°F")
+                                    .font(.title).bold()
+                            }
+                        }
+                        .listRowBackground(Color.clear)
+                    }
+                    .listStyle(.plain)
+//                    .foregroundStyle(.black)
+                    .font(.title2)
                 }
                 .foregroundStyle(.white)
             }
@@ -48,11 +66,27 @@ struct WeatherView: View {
         }
         .task {
             await weather.getData()
+            print(weather.date)
+            print(weather.dailyWeatherCode)
+            print(weather.dailytHighTemp)
+            print(weather.dailyLowTemp)
+            print(weather.date[2])
         }
     }
 }
 
 extension WeatherView {
+    func getWeekDay(text: String) -> String {
+        let separates = text.components(separatedBy: "-")
+        let calendar = Calendar.current
+        var comp = DateComponents()
+        comp.year = Int(separates[0])
+        comp.month = Int(separates[1])
+        comp.day = Int(separates[2])
+        let mydate = calendar.date(from: comp)!
+        return mydate.formatted(.dateTime.weekday(.wide))
+    }
+    
     func getWeatherDescription(for code: Int) -> String {
         switch code {
         case 0:

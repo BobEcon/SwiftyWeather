@@ -11,6 +11,7 @@ import Foundation
 class WeatherViewModel {
     private struct Returned: Codable {
         var current: Current
+        var daily: Daily
     }
     
     struct Current: Codable {
@@ -20,12 +21,23 @@ class WeatherViewModel {
         var wind_speed_10m: Double
     }
     
+    struct Daily: Codable {
+        var time: [String]
+        var weather_code: [Int]
+        var temperature_2m_max: [Double]
+        var temperature_2m_min: [Double]
+    }
+    
     var urlString = "https://api.open-meteo.com/v1/forecast?latitude=42.3306&longitude=-71.1662&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&hourly=uv_index&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&timezone=auto&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
     
-    var temperature_2m = 0.0
-    var apparent_temperature = 0.0
-    var weather_code = 0
-    var wind_speed_10m = 0.0
+    var temperature = 0.0
+    var feelsLike = 0.0
+    var weatherCode = 0
+    var windspeed = 0.0
+    var date: [String] = []
+    var dailyWeatherCode: [Int] = []
+    var dailytHighTemp: [Double] = []
+    var dailyLowTemp: [Double] = []
     
     func getData() async {
         print("we are accessing the url \(urlString)")
@@ -41,12 +53,17 @@ class WeatherViewModel {
                 print("JSON ERROR; Could not decode returned JSON data")
                 return
             }
-            Task { @MainActor in 
-            self.temperature_2m = returned.current.temperature_2m
-            self.apparent_temperature = returned.current.apparent_temperature
-            self.weather_code = returned.current.weather_code
-            self.wind_speed_10m = returned.current.wind_speed_10m
-        }
+            Task { @MainActor in
+                self.temperature = returned.current.temperature_2m
+                self.feelsLike = returned.current.apparent_temperature
+                self.weatherCode = returned.current.weather_code
+                self.windspeed = returned.current.wind_speed_10m
+                self.date = returned.daily.time
+                self.dailyWeatherCode = returned.daily.weather_code
+                self.dailytHighTemp = returned.daily.temperature_2m_max
+                self.dailyLowTemp = returned.daily.temperature_2m_min
+                
+            }
         } catch {
             print("ERROR: Could not get data from URL")
         }
