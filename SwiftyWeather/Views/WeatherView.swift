@@ -31,8 +31,8 @@ struct WeatherView: View {
                             .font(.title2)
                             .padding(.bottom)
                         
-                    List {
-                        ForEach(0..<weather.date.count, id: \.self) { index in
+                    List (0..<weather.date.count, id: \.self) { index in
+                            
                             HStack {
                                 Image(systemName: getWeatherIcon(for: weather.dailyWeatherCode[index]))
                                 Text(getWeekDay(text:weather.date[index]))
@@ -42,9 +42,8 @@ struct WeatherView: View {
                                 Text("\(weather.dailytHighTemp[index].formatted(.number.precision(.fractionLength(0))))°F")
                                     .font(.title).bold()
                             }
+                            .listRowBackground(Color.clear)
                         }
-                        .listRowBackground(Color.clear)
-                    }
                     .listStyle(.plain)
 //                    .foregroundStyle(.black)
                     .font(.title2)
@@ -66,11 +65,6 @@ struct WeatherView: View {
         }
         .task {
             await weather.getData()
-            print(weather.date)
-            print(weather.dailyWeatherCode)
-            print(weather.dailytHighTemp)
-            print(weather.dailyLowTemp)
-            print(weather.date[2])
         }
     }
 }

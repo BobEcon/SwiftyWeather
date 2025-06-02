@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C51BB49F2DEE151600A4084A /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51BB49E2DEE151600A4084A /* PreferenceView.swift */; };
+		C51BB4A32DEE1A1200A4084A /* UnitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51BB4A22DEE1A1200A4084A /* UnitSystem.swift */; };
+		C51BB4B72DEE550800A4084A /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51BB4B62DEE550800A4084A /* Preference.swift */; };
 		C54A33322DEB7E2300DEEE28 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54A33312DEB7E2300DEEE28 /* WeatherViewModel.swift */; };
 		C5520D8D2DEA6D3F00D56315 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5520D882DEA6D3F00D56315 /* Assets.xcassets */; };
 		C5520D8F2DEA6D3F00D56315 /* SwiftyWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5520D8A2DEA6D3F00D56315 /* SwiftyWeatherApp.swift */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C51BB49E2DEE151600A4084A /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
+		C51BB4A22DEE1A1200A4084A /* UnitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSystem.swift; sourceTree = "<group>"; };
+		C51BB4B62DEE550800A4084A /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		C54A33312DEB7E2300DEEE28 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		C5520D782DEA642300D56315 /* SwiftyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5520D882DEA6D3F00D56315 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +43,9 @@
 			isa = PBXGroup;
 			children = (
 				C5520D8B2DEA6D3F00D56315 /* WeatherView.swift */,
+				C51BB49E2DEE151600A4084A /* PreferenceView.swift */,
+				C51BB4B62DEE550800A4084A /* Preference.swift */,
+				C51BB4A22DEE1A1200A4084A /* UnitSystem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,7 +159,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5520D8F2DEA6D3F00D56315 /* SwiftyWeatherApp.swift in Sources */,
+				C51BB49F2DEE151600A4084A /* PreferenceView.swift in Sources */,
 				C54A33322DEB7E2300DEEE28 /* WeatherViewModel.swift in Sources */,
+				C51BB4A32DEE1A1200A4084A /* UnitSystem.swift in Sources */,
+				C51BB4B72DEE550800A4084A /* Preference.swift in Sources */,
 				C5520D902DEA6D3F00D56315 /* WeatherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
