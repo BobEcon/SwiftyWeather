@@ -30,9 +30,9 @@ struct WeatherView: View {
                         .symbolRenderingMode(.multicolor)
                     Text(getWeatherDescription(for:weather.weatherCode))
                             .font(.largeTitle)
-                    Text("\(weather.temperature.formatted(.number.precision(.fractionLength(0))))°F")
+                    Text("\(weather.temperature.formatted(.number.precision(.fractionLength(0))))\(preference.degreeUnitShowing ? (preference.selectedUnit == .imperial ? "°F" : "°C"): "")")
                             .font(.system(size: 150, weight: .thin))
-                        Text("Wind \(weather.windspeed.formatted(.number.precision(.fractionLength(0))))mph - Feels like \(weather.feelsLike.formatted(.number.precision(.fractionLength(0))))°F")
+                        Text("Wind \(weather.windspeed.formatted(.number.precision(.fractionLength(0))))\(preference.selectedUnit == .imperial ? "mph" : "kmh") - Feels like \(weather.feelsLike.formatted(.number.precision(.fractionLength(0))))\(preference.degreeUnitShowing ? (preference.selectedUnit == .imperial ? "°F" : "°C"): "")")
                             .font(.title2)
                             .padding(.bottom)
                         
@@ -42,9 +42,9 @@ struct WeatherView: View {
                                 Image(systemName: getWeatherIcon(for: weather.dailyWeatherCode[index]))
                                 Text(getWeekDay(text:weather.date[index]))
                                 Spacer()
-                                Text("\(weather.dailyLowTemp[index].formatted(.number.precision(.fractionLength(0))))°F")
+                                Text("\(weather.dailyLowTemp[index].formatted(.number.precision(.fractionLength(0))))\(preference.degreeUnitShowing ? (preference.selectedUnit == .imperial ? "°F" : "°C"): "")")
                                 Text("/")
-                                Text("\(weather.dailytHighTemp[index].formatted(.number.precision(.fractionLength(0))))°F")
+                                Text("\(weather.dailytHighTemp[index].formatted(.number.precision(.fractionLength(0))))\(preference.degreeUnitShowing ? (preference.selectedUnit == .imperial ? "°F" : "°C"): "")")
                                     .font(.title).bold()
                             }
                             .listRowBackground(Color.clear)
