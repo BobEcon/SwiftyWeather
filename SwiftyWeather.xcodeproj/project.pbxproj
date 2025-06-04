@@ -44,7 +44,6 @@
 			children = (
 				C5520D8B2DEA6D3F00D56315 /* WeatherView.swift */,
 				C51BB49E2DEE151600A4084A /* PreferenceView.swift */,
-				C51BB4B62DEE550800A4084A /* Preference.swift */,
 				C51BB4A22DEE1A1200A4084A /* UnitSystem.swift */,
 			);
 			path = Views;
@@ -53,6 +52,7 @@
 		C54A33442DEBB48500DEEE28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C51BB4B62DEE550800A4084A /* Preference.swift */,
 				C54A33312DEB7E2300DEEE28 /* WeatherViewModel.swift */,
 			);
 			path = Models;

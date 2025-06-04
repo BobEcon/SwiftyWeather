@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct WeatherView: View {
+    @Query var preferences: [Preference]
+    @State private var preference = Preference()
+    @Environment(\.modelContext) var modelContext
     @State private var weather = WeatherViewModel()
+    @State private var sheetIsPresented: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -49,11 +54,12 @@ struct WeatherView: View {
                     .font(.title2)
                 }
                 .foregroundStyle(.white)
+                
             }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            //TODO: Add action code here
+                            sheetIsPresented.toggle()
                         } label: {
                             Image(systemName: "gear")
                         }
@@ -63,13 +69,30 @@ struct WeatherView: View {
             
 
         }
+        .onChange(of: preferences) {
+            Task {
+                await callWeatherAPI()
+            }
+        }
         .task {
-            await weather.getData()
+            await callWeatherAPI()
+        }
+        .fullScreenCover(isPresented: $sheetIsPresented) {
+            PreferenceView()
         }
     }
 }
 
 extension WeatherView {
+    
+    func callWeatherAPI() async {
+        if !preferences.isEmpty {
+           preference = preferences.first!
+            weather.urlString = "https://api.open-meteo.com/v1/forecast?latitude=\(preference.latString)&longitude=\(preference.longString)&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&hourly=uv_index&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&timezone=auto&wind_speed_unit=\(preference.selectedUnit == .metric ? "kmh" : "mph")&temperature_unit=\(preference.selectedUnit == .metric ? "celsius" : "fahrenheit")&precipitation_unit=inch"
+        }
+        await weather.getData()
+    }
+    
     func getWeekDay(text: String) -> String {
         let separates = text.components(separatedBy: "-")
         let calendar = Calendar.current
